@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 12 English Mind Maps — Flamingo & Vistas</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f9f7f2;
+  --card:#ffffff;
+  --ink:#1a1a2e;
+  --soft:#6b7280;
+  --border:#e5e0d8;
+  --shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+body{background:var(--bg);font-family:'Lato',sans-serif;color:var(--ink);min-height:100vh}
+
+/* HEADER */
+.site-header{background:#1a1a2e;padding:24px 20px 20px;text-align:center;position:sticky;top:0;z-index:100}
+.site-header h1{font-family:'Caveat',cursive;font-size:32px;color:#fff;letter-spacing:1px;margin-bottom:4px}
+.site-header p{font-size:13px;color:#9ca3af;letter-spacing:.5px}
+
+/* TABS */
+.book-tabs{display:flex;justify-content:center;gap:0;margin:0 auto;max-width:400px;margin-top:12px}
+.book-tab{flex:1;padding:8px 0;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;border:none;cursor:pointer;transition:all .2s}
+.book-tab:first-child{border-radius:8px 0 0 8px}
+.book-tab:last-child{border-radius:0 8px 8px 0}
+.book-tab.active{background:#e8a045;color:#1a1a2e}
+.book-tab:not(.active){background:#2d2d44;color:#9ca3af}
+
+/* SECTION LABEL */
+.section-label{text-align:center;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--soft);padding:20px 0 8px}
+
+/* CHAPTER GRID */
+.chapter-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 16px 16px;max-width:900px;margin:0 auto}
+.ch-btn{padding:8px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--soft);font-family:'Lato',sans-serif}
+.ch-btn:hover{border-color:#aaa;color:var(--ink);transform:translateY(-1px)}
+.ch-btn.active{color:#fff;border-color:transparent;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,0.15)}
+.ch-btn.prose-btn.active{background:#2563eb}
+.ch-btn.poetry-btn.active{background:#7c3aed}
+.ch-btn.vistas-btn.active{background:#059669}
+
+/* MINDMAP CONTAINER */
+.mm-wrapper{max-width:960px;margin:0 auto;padding:0 16px 40px}
+.mm-card{background:var(--card);border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+.mm-header{padding:20px 24px 0;border-bottom:1px solid var(--border);padding-bottom:16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mm-title{font-family:'Caveat',cursive;font-size:28px;font-weight:700;color:var(--ink)}
+.mm-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.mm-author{font-size:12px;color:var(--soft);font-style:italic}
+.mm-badge{font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:10px;text-transform:uppercase}
+.badge-prose{background:#dbeafe;color:#1d4ed8}
+.badge-poetry{background:#ede9fe;color:#6d28d9}
+.badge-vistas{background:#d1fae5;color:#065f46}
+
+/* MINDMAP BODY */
+.mm-body{padding:20px 16px}
+
+/* NODE GRID LAYOUT */
+.mm-grid{display:grid;gap:12px}
+.mm-grid-2{grid-template-columns:1fr 1fr}
+.mm-grid-3{grid-template-columns:1fr 1fr 1fr}
+.mm-grid-23{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
+
+/* CENTER NODE */
+.center-row{display:flex;justify-content:center;margin-bottom:16px;position:relative}
+.center-row::after{content:'';position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);width:1px;height:16px;background:var(--border)}
+.center-node{background:#1a1a2e;color:#fff;border-radius:50px;padding:12px 32px;font-family:'Caveat',cursive;font-size:20px;font-weight:700;text-align:center;max-width:320px;line-height:1.2}
+
+/* NODE CARD */
+.node{border-radius:12px;padding:12px 14px;border:1.5px solid transparent;position:relative;transition:box-shadow .2s}
+.node-title{font-size:12px;font-weight:700;letter-spacing:.3px;margin-bottom:6px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.node-title::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.node-points{list-style:none;padding:0}
+.node-points li{font-size:12px;line-height:1.5;padding:2px 0 2px 14px;position:relative;color:#374151}
+.node-points li::before{content:'•';position:absolute;left:2px;color:inherit;opacity:0.5}
+
+/* NODE COLORS */
+.node-blue{background:#eff6ff;border-color:#bfdbfe}
+.node-blue .node-title{color:#1d4ed8}
+.node-blue .node-title::before{background:#3b82f6}
+.node-green{background:#f0fdf4;border-color:#bbf7d0}
+.node-green .node-title{color:#15803d}
+.node-green .node-title::before{background:#22c55e}
+.node-amber{background:#fffbeb;border-color:#fde68a}
+.node-amber .node-title{color:#b45309}
+.node-amber .node-title::before{background:#f59e0b}
+.node-rose{background:#fff1f2;border-color:#fecdd3}
+.node-rose .node-title{color:#be123c}
+.node-rose .node-title::before{background:#f43f5e}
+.node-purple{background:#faf5ff;border-color:#e9d5ff}
+.node-purple .node-title{color:#7e22ce}
+.node-purple .node-title::before{background:#a855f7}
+.node-teal{background:#f0fdfa;border-color:#99f6e4}
+.node-teal .node-title{color:#0f766e}
+.node-teal .node-title::before{background:#14b8a6}
+.node-orange{background:#fff7ed;border-color:#fed7aa}
+.node-orange .node-title{color:#c2410c}
+.node-orange .node-title::before{background:#f97316}
+.node-slate{background:#f8fafc;border-color:#cbd5e1}
+.node-slate .node-title{color:#334155}
+.node-slate .node-title::before{background:#64748b}
+.node-indigo{background:#eef2ff;border-color:#c7d2fe}
+.node-indigo .node-title{color:#3730a3}
+.node-indigo .node-title::before{background:#6366f1}
+.node-pink{background:#fdf4ff;border-color:#f0abfc}
+.node-pink .node-title{color:#86198f}
+.node-pink .node-title::before{background:#d946ef}
+
+/* CONNECTOR LINES */
+.connector-grid{position:relative}
+.lines-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+
+/* DIVIDER */
+.section-divider{border:none;border-top:1px dashed var(--border);margin:16px 0}
+
+/* PLACEHOLDER */
+.mm-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;color:var(--soft);gap:12px}
+.mm-placeholder .big{font-size:48px;opacity:.3}
+.mm-placeholder p{font-size:14px;text-align:center;max-width:280px;line-height:1.6}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .mm-grid-2,.mm-grid-3,.mm-grid-23{grid-template-columns:1fr}
+  .mm-header{flex-direction:column}
+  .mm-meta{align-items:flex-start}
+}
+
+/* PRINT */
+@media print{
+  .site-header,.chapter-nav,.section-label{display:none}
+  .mm-wrapper{padding:0}
+  .mm-card{box-shadow:none;border:1px solid #ddd}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>📖 Class 12 English Mind Maps</h1>
+  <p>CBSE — Flamingo &amp; Vistas</p>
+  <div class="book-tabs">
+    <button class="book-tab active" onclick="setBook('flamingo',this)">🌸 Flamingo</button>
+    <button class="book-tab" onclick="setBook('vistas',this)">🌿 Vistas</button>
+  </div>
+</header>
+
+<div id="flamingo-nav" class="book-section">
+  <div class="section-label">Prose</div>
+  <div class="chapter-nav">
+    <button class="ch-btn prose-btn active" onclick="show('mm-f1',this)">1. The Last Lesson</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f2',this)">2. Lost Spring</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f3',this)">3. Deep Water</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f4',this)">4. The Rattrap</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f5',this)">5. Indigo</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f6',this)">6. Poets and Pancakes</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f7',this)">7. The Interview</button>
+    <button class="ch-btn prose-btn" onclick="show('mm-f8',this)">8. Going Places</button>
+  </div>
+  <div class="section-label">Poetry</div>
+  <div class="chapter-nav">
+    <button class="ch-btn poetry-btn" onclick="show('mm-p1',this)">1. My Mother at Sixty-Six</button>
+    <button class="ch-btn poetry-btn" onclick="show('mm-p2',this)">2. Keeping Quiet</button>
+    <button class="ch-btn poetry-btn" onclick="show('mm-p3',this)">3. A Thing of Beauty</button>
+    <button class="ch-btn poetry-btn" onclick="show('mm-p4',this)">4. A Roadside Stand</button>
+    <button class="ch-btn poetry-btn" onclick="show('mm-p5',this)">5. Aunt Jennifer's Tigers</button>
+  </div>
+</div>
+
+<div id="vistas-nav" class="book-section" style="display:none">
+  <div class="section-label">Chapters</div>
+  <div class="chapter-nav">
+    <button class="ch-btn vistas-btn active" onclick="show('mm-v1',this)">1. The Third Level</button>
+    <button class="ch-btn vistas-btn" onclick="show('mm-v2',this)">2. The Tiger King</button>
+    <button class="ch-btn vistas-btn" onclick="show('mm-v3',this)">3. Journey to the End of Earth</button>
+    <button class="ch-btn vistas-btn" onclick="show('mm-v4',this)">4. The Enemy</button>
+    <button class="ch-btn vistas-btn" onclick="show('mm-v5',this)">5. On the Face of It</button>
+    <button class="ch-btn vistas-btn" onclick="show('mm-v6a',this)">6A. Cutting of My Long Hair</button>
+    <button class="ch-btn vistas-btn" onclick="show('mm-v6b',this)">6B. We Too Are Human Beings</button>
+  </div>
+</div>
+
+<div class="mm-wrapper">
+
+<!-- ==================== FLAMINGO PROSE ==================== -->
+
+<!-- F1: THE LAST LESSON -->
+<div id="mm-f1" class="mindmap">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Last Lesson</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Alphonse Daudet</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 1</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">The Last Lesson</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Franz</div>
+      <ul class="node-points">
+        <li>Poor French schoolboy</li>
+        <li>Happy-go-lucky &amp; carefree</li>
+        <li>Afraid of being questioned on participles</li>
+        <li>Wanted to skip school that day</li>
+        <li>Realizes value of French language</li>
+        <li>Symbolises France in slumber (neglect of language)</li>
+        <li>Narrator of the story</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">M. Hamel</div>
+      <ul class="node-points">
+        <li>Teacher of French for 40 years</li>
+        <li>Truthful &amp; deeply patriotic</li>
+        <li>Tragic hero — dismissed by Prussians</li>
+        <li>Wore special Sunday clothes that day</li>
+        <li>Blamed parents &amp; himself for neglect</li>
+        <li>Said "French is the most beautiful language"</li>
+        <li>Symbolises new national consciousness of France</li>
+        <li>Wrote "Vive La France!" on the board &amp; couldn't speak</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Last Lesson (Event)</div>
+      <ul class="node-points">
+        <li>Last lesson of French in Alsace &amp; Lorraine</li>
+        <li>Prussians ordered only German to be taught</li>
+        <li>Villagers came to sit in the classroom</li>
+        <li>Hauser brought his old primer</li>
+        <li>Solemn &amp; emotional atmosphere</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Minor Characters</div>
+      <ul class="node-points">
+        <li>Watcher / Blacksmith — came to sit in class</li>
+        <li>Old Hauser — brought ABC book &amp; spectacles</li>
+        <li>Former Mayor &amp; Old Postmaster</li>
+        <li>Villagers — realise they neglected their language</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Linguistic &amp; cultural identity</li>
+        <li>Loss of freedom under occupation</li>
+        <li>Patriotism &amp; love for motherland</li>
+        <li>Regret &amp; awakening (too late)</li>
+        <li>Language as the key to freedom</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Setting &amp; Context</div>
+      <ul class="node-points">
+        <li>Franco-Prussian War (1870–71) backdrop</li>
+        <li>Alsace &amp; Lorraine: taken by Prussia</li>
+        <li>Small school in Alsace, France</li>
+        <li>Notice on bulletin board — shocked everyone</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F2: LOST SPRING -->
+<div id="mm-f2" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Lost Spring</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Anees Jung</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 2</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Lost Spring</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Saheb — Story I</div>
+      <ul class="node-points">
+        <li>Rag-picker from Dhaka, Bangladesh</li>
+        <li>Full name: Saheb-e-Alam (lord of the universe) — ironic</li>
+        <li>Came to Delhi fleeing storms &amp; floods</li>
+        <li>"Looking for gold in garbage" — his words</li>
+        <li>Barefoot — can't afford chappals</li>
+        <li>Later takes job at tea stall — loses freedom</li>
+        <li>Loses his carefree spirit; becomes a machine</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Mukesh — Story II</div>
+      <ul class="node-points">
+        <li>Born in Firozabad — bangle-making family</li>
+        <li>Wants to be a motor mechanic (dreams big)</li>
+        <li>Challenges his family's fatalistic attitude</li>
+        <li>Father: poor bangle maker, never could afford good home</li>
+        <li>Represents those who dare to break the cycle</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Firozabad — Bangle Makers</div>
+      <ul class="node-points">
+        <li>Children work in dark, dingy furnaces</li>
+        <li>Lose eyesight due to hazardous conditions</li>
+        <li>Earn barely enough — trapped in vicious cycle</li>
+        <li>Cannot form cooperatives — middlemen &amp; police intimidate</li>
+        <li>Politicians exploit, sahibs browbeat them</li>
+        <li>Girls married young — bangles a symbol of their sorrow</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Symbolism</div>
+      <ul class="node-points">
+        <li>Garbage = gold (false hope of the poor)</li>
+        <li>Bangles = marriage/auspiciousness, but also oppression</li>
+        <li>Chappals = dignity &amp; basic rights denied</li>
+        <li>"Spring" = childhood, stolen from these children</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Poverty &amp; child labour in India</li>
+        <li>Loss of childhood — "lost spring"</li>
+        <li>Broken dreams &amp; shattered aspirations</li>
+        <li>Vicious cycle of poverty across generations</li>
+        <li>Social apathy &amp; systemic exploitation</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Two Contrasting Stories</div>
+      <ul class="node-points">
+        <li>Story I: Saheb in Delhi — rag-picking → servitude</li>
+        <li>Story II: Mukesh in Firozabad — inherited vocation</li>
+        <li>Both show how poverty robs children of spring</li>
+        <li>Author: journalist-style, first-person observation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F3: DEEP WATER -->
+<div id="mm-f3" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Deep Water</div>
+  <div class="mm-meta">
+    <span class="mm-author">— William O. Douglas</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 3</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Deep Water</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">William Douglas</div>
+      <ul class="node-points">
+        <li>Knocked down by waves at California beach (age 3–4)</li>
+        <li>Developed aquaphobia (fear of water)</li>
+        <li>Thrown into deep end of YMCA pool by a bully</li>
+        <li>Nearly drowned — traumatic experience</li>
+        <li>Joined YMCA pool at age 9–10 to overcome fear</li>
+        <li>Re-joined at mature age for professional training</li>
+        <li>Author &amp; Associate Justice of US Supreme Court</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The Drowning Experience (YMCA)</div>
+      <ul class="node-points">
+        <li>A big boy threw Douglas into the 9-foot deep pool</li>
+        <li>Hit the bottom, tried to jump up to surface</li>
+        <li>All efforts failed — tried 3 times</li>
+        <li>Went limp — lost consciousness</li>
+        <li>Woke up by the pool — very shaken</li>
+        <li>Fear became part of him for years</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Instructor</div>
+      <ul class="node-points">
+        <li>Trained Douglas over several months</li>
+        <li>Used a pulley with a rope around Douglas's waist</li>
+        <li>Taught swimming stroke by stroke, bit by bit</li>
+        <li>Taught how to inhale &amp; exhale properly in water</li>
+        <li>Built him into a swimmer — took nearly 6 months</li>
+        <li>Fear still surfaced — Douglas had to face it alone</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Waters &amp; Places</div>
+      <ul class="node-points">
+        <li>YMCA pool (where he nearly drowned)</li>
+        <li>Warm Lake — tested himself, fear returned</li>
+        <li>Lake Crescent — swam across &amp; back</li>
+        <li>Meade Glacier — dove into pool below</li>
+        <li>Went fishing, canoeing — fully conquered fear</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Mother's Role</div>
+      <ul class="node-points">
+        <li>Warned him about the Yakima River's dangers</li>
+        <li>Said "it has drowned many"</li>
+        <li>Did NOT allow him to swim in Yakima River</li>
+        <li>Sent him to the YMCA pool instead</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes &amp; Message</div>
+      <ul class="node-points">
+        <li>Conquering fear through will &amp; determination</li>
+        <li>Phobia can cripple life — must be faced</li>
+        <li>Roosevelt quote: "All we have to fear is fear itself"</li>
+        <li>Fear of death vs the will to live</li>
+        <li>Terror &amp; serenity — the two sides of deep water</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F4: THE RATTRAP -->
+<div id="mm-f4" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Rattrap</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Selma Lagerlöf</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 4</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">The Rattrap</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">The Rattrap Seller (Vagabond)</div>
+      <ul class="node-points">
+        <li>Unnamed — a poor, homeless peddler</li>
+        <li>Sold rattraps made from wire &amp; scrap metal</li>
+        <li>Also begged &amp; stole when desperate</li>
+        <li>Lonely, haggard, with no faith in himself</li>
+        <li>Sees the world as a giant rattrap (his philosophy)</li>
+        <li>Steals crofter's 30 kronor — gets trapped in forest</li>
+        <li>Mistaken for Captain Nils Olof by Iron Master</li>
+        <li>Transformed by Edla's kindness — returns the money</li>
+        <li>Signs letter: "Captain Von Stahle" — ironic title</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Edla Willmansson</div>
+      <ul class="node-points">
+        <li>Iron Master's daughter — compassionate &amp; perceptive</li>
+        <li>Saw through the disguise but welcomed him anyway</li>
+        <li>Said: "Let him stay even if he isn't the captain"</li>
+        <li>Treated him with warmth, dignity &amp; respect</li>
+        <li>Gives him Christmas gift: a rattrap with money inside</li>
+        <li>True Christian — believes in essential goodness of people</li>
+        <li>Her kindness catalyses the vagabond's transformation</li>
+        <li>Represents compassion &amp; redemption</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Iron Master</div>
+      <ul class="node-points">
+        <li>Owner of Ramsjo Ironworks</li>
+        <li>Former soldier — mistook vagabond for old regimental friend (Nils Olof)</li>
+        <li>Invited him home out of mistaken identity</li>
+        <li>Realised the mistake next morning (after clean-up)</li>
+        <li>Threatened to call the sheriff</li>
+        <li>Represents superficial generosity — helps only when he thinks it benefits him</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">The Crofter</div>
+      <ul class="node-points">
+        <li>Old, lonely man living alone (wife had died)</li>
+        <li>Worked at Ramsjo mills in his youth</li>
+        <li>Very hospitable — offered food, tobacco &amp; shelter</li>
+        <li>Showed vagabond his savings: 30 kronor in a leather bag</li>
+        <li>Trusted the vagabond — was cheated and robbed</li>
+        <li>Represents innocent generosity betrayed</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">The Rattrap — Central Symbol</div>
+      <ul class="node-points">
+        <li>Vagabond's philosophy: world = a giant rattrap</li>
+        <li>Riches, joys, shelter = baits to lure people in</li>
+        <li>Once you reach for the bait, trap snaps shut</li>
+        <li>Applies to the crofter (trusted too much)</li>
+        <li>Applies to vagabond himself (stole &amp; got lost)</li>
+        <li>Applies to Iron Master (blinded by assumption)</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Redemption through compassion</li>
+        <li>Essential goodness in every human</li>
+        <li>World as a metaphorical trap (materialism)</li>
+        <li>True vs false generosity</li>
+        <li>Transformation &amp; self-realisation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F5: INDIGO -->
+<div id="mm-f5" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Indigo</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Louis Fischer</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 5</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Indigo</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Mahatma Gandhi</div>
+      <ul class="node-points">
+        <li>Called to Champaran by Rajkumar Shukla</li>
+        <li>Refused to leave Champaran on magistrate's orders</li>
+        <li>Collected evidence by interviewing farmers</li>
+        <li>Negotiated 25% refund from planters (not 100%)</li>
+        <li>Said: "Sign of practical victory" — not the amount</li>
+        <li>Set up schools, hospitals in Champaran villages</li>
+        <li>Taught self-reliance — "your helper should be yourselves"</li>
+        <li>First civil disobedience in India — Champaran 1917</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Rajkumar Shukla</div>
+      <ul class="node-points">
+        <li>Resolute, illiterate peasant farmer from Champaran</li>
+        <li>Followed Gandhi from Lucknow to Cawnpore to Calcutta</li>
+        <li>Refused to give up — "You are a busy man"</li>
+        <li>Brought Gandhi to Bihar — catalyst of the movement</li>
+        <li>Represents the determined common man</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Champaran System</div>
+      <ul class="node-points">
+        <li>Tinkathia System: farmers forced to plant 3/20 land with indigo</li>
+        <li>All indigo given as rent — no payment to farmers</li>
+        <li>When synthetic indigo invented — British wanted to cancel the system</li>
+        <li>But demanded money compensation from farmers first</li>
+        <li>Farmers didn't know their rights — signed documents blindly</li>
+        <li>Sharecroppers exploited by English landlords (planters)</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Lawyers &amp; Associates</div>
+      <ul class="node-points">
+        <li>Gandhi met lawyers: Brij Kishore Babu, Rajendra Prasad</li>
+        <li>They admitted: if Gandhi was arrested, they'd go home</li>
+        <li>Gandhi rebuked them — they agreed to follow him to jail</li>
+        <li>Dr. Dev, Prof Mahadev Desai, Narhari Parikh helped</li>
+        <li>Kasturba — taught personal cleanliness in villages</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Outcome &amp; Victory</div>
+      <ul class="node-points">
+        <li>Commissioner tried to intimidate Gandhi — failed</li>
+        <li>Lieutenant Governor dropped case against Gandhi</li>
+        <li>Inquiry committee set up — Gandhi included</li>
+        <li>Planters agreed to 25% refund (Gandhi asked for 50%)</li>
+        <li>Gandhi accepted — said the amount wasn't the point</li>
+        <li>Tinkathia system abolished after a few years</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Civil disobedience &amp; non-violent resistance</li>
+        <li>Farmers' exploitation under colonialism</li>
+        <li>Courage &amp; leadership</li>
+        <li>Importance of self-reliance</li>
+        <li>One man can change history</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F6: POETS AND PANCAKES -->
+<div id="mm-f6" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Poets and Pancakes</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Asokamitran</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 6</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Poets and Pancakes</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Gemini Studios</div>
+      <ul class="node-points">
+        <li>One of the biggest film studios in India (Madras)</li>
+        <li>Owned by S.S. Vasan</li>
+        <li>Known as "Gemini" — a creative but hierarchical place</li>
+        <li>Consumed large quantities of pancake makeup</li>
+        <li>Employed hundreds — many roles &amp; departments</li>
+        <li>Author (Asokamitran) was a junior employee</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The Makeup Department</div>
+      <ul class="node-points">
+        <li>Chief: a Brahmin from Srirangam</li>
+        <li>Makeup = Pancake brand — applied to everyone</li>
+        <li>Department had a hierarchy of its own</li>
+        <li>Stars had exclusive personal makeup artists</li>
+        <li>Crowds &amp; junior artists — applied makeup themselves</li>
+        <li>Makeup room was a mirror of studio's social ladder</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Subbu (S.D. Subbulakshmi Iyer)</div>
+      <ul class="node-points">
+        <li>No. 2 at Gemini Studios</li>
+        <li>Brahmin — "most talented man in the studio" (ironic admiration)</li>
+        <li>Could write, act, direct, compose — multi-talented</li>
+        <li>Always cheerful &amp; optimistic — never at a loss</li>
+        <li>Completely devoted &amp; loyal to the Boss (Vasan)</li>
+        <li>Made enemies because Boss favoured him</li>
+        <li>After Boss's downfall, became a scapegoat — blamed for failures</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">The Office Boy</div>
+      <ul class="node-points">
+        <li>Fiercely envied the makeup department</li>
+        <li>Dreamed of becoming a film director or poet</li>
+        <li>Had written "many" poems — never published</li>
+        <li>Believed Gemini Studios ruined his chances</li>
+        <li>Wasted his literary talent in studio errands</li>
+        <li>Represents frustrated artistic ambition</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">The English Visitor (Stephen Spender)</div>
+      <ul class="node-points">
+        <li>A visitor came and gave a long speech</li>
+        <li>No one at Gemini understood what he said</li>
+        <li>Later identified as the poet Stephen Spender</li>
+        <li>He had written "The God That Failed" — about disillusionment with Communism</li>
+        <li>Ironic: a communist-leaning studio invited an anti-communist poet</li>
+        <li>Nobody got the connection — mystery solved years later by author</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes &amp; Tone</div>
+      <ul class="node-points">
+        <li>Irony &amp; humour throughout — light satirical tone</li>
+        <li>Hierarchy in the film world</li>
+        <li>Thwarted literary &amp; creative dreams</li>
+        <li>Unlikely meeting of art &amp; commerce</li>
+        <li>Gemini's innocence &amp; political naivety</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F7: THE INTERVIEW -->
+<div id="mm-f7" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Interview</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Christopher Silvester &amp; Umberto Eco</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 7</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">The Interview</div></div>
+  <div class="mm-grid mm-grid-2">
+    <div class="node node-blue">
+      <div class="node-title">Part I — About Interviews (Silvester)</div>
+      <ul class="node-points">
+        <li>Interviews have been a staple of journalism since 1859</li>
+        <li>Invented by American journalism — rapidly adopted worldwide</li>
+        <li>Serves two purposes: information &amp; insight into personality</li>
+        <li>Some celebrities hate being interviewed</li>
+        <li>Lewis Carroll: felt it was an "impertinence"</li>
+        <li>Rudyard Kipling: "an assault" — wife refused all interviews</li>
+        <li>V.S. Naipaul: felt it left "a dent in his personality"</li>
+        <li>Others: useful for self-expression &amp; reaching the public</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Part II — Umberto Eco Interview</div>
+      <ul class="node-points">
+        <li>Interviewed by Mukund Padmanabhan (The Hindu)</li>
+        <li>Italian novelist, philosopher &amp; semiotician</li>
+        <li>Author of "The Name of the Rose" (sold 10 million+ copies)</li>
+        <li>Says he writes in the "interstices of time" — empty spaces</li>
+        <li>Has two offices at home: ancient books &amp; modern books</li>
+        <li>Started as academic — popular writing came later</li>
+        <li>Says the narrator of his novel is NOT him</li>
+        <li>Distinguishes between the empirical author &amp; the narrator</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Umberto Eco's Philosophy</div>
+      <ul class="node-points">
+        <li>Writes during empty spaces: waiting, flying, queuing</li>
+        <li>Does not waste a single moment</li>
+        <li>"The Name of the Rose" — began as 'fun' with detective story in a monastery</li>
+        <li>Believes academic &amp; popular writing can coexist</li>
+        <li>Narrator ≠ Author — never confuse the two</li>
+        <li>An author gives voice to the character, not to himself</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Power &amp; ethics of media interviews</li>
+        <li>Privacy vs public exposure of celebrities</li>
+        <li>Identity: author vs narrator vs character</li>
+        <li>Creative process &amp; use of time</li>
+        <li>Intersection of academic &amp; popular literature</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- F8: GOING PLACES -->
+<div id="mm-f8" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Going Places</div>
+  <div class="mm-meta">
+    <span class="mm-author">— A.R. Barton</span>
+    <span class="mm-badge badge-prose">Flamingo · Prose 8</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Going Places</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Sophie</div>
+      <ul class="node-points">
+        <li>Teenage girl — lives in a working-class family</li>
+        <li>Extreme daydreamer &amp; fantasist</li>
+        <li>Wants to own a boutique, become an actress or a fashion designer</li>
+        <li>Jansie says these dreams are impossible</li>
+        <li>Becomes obsessed with Danny Casey (Irish footballer)</li>
+        <li>Claims she met him — likely imagined</li>
+        <li>Goes to the canal alone — relives/imagines the meeting</li>
+        <li>Ultimately retreats deeper into fantasy</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Jansie</div>
+      <ul class="node-points">
+        <li>Sophie's close friend &amp; classmate</li>
+        <li>Practical and realistic — feet on the ground</li>
+        <li>Knows both will end up working in biscuit factories</li>
+        <li>Warns Sophie about spreading stories about Casey</li>
+        <li>Represents the real world / acceptance of limitations</li>
+        <li>Foil to Sophie's dreamy character</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Geoff (Brother)</div>
+      <ul class="node-points">
+        <li>Sophie's older brother — mechanic</li>
+        <li>Man of few words — Sophie envies his silence &amp; world</li>
+        <li>Sophie confides in him about Danny Casey</li>
+        <li>He keeps her secret at first but tells Jansie</li>
+        <li>Represents a broader world Sophie cannot access</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Danny Casey</div>
+      <ul class="node-points">
+        <li>Young Irish football hero — Sophie's idol</li>
+        <li>She claims to have met him in a shopping arcade</li>
+        <li>Claims they arranged a second meeting — he never comes</li>
+        <li>The meeting may be entirely imagined</li>
+        <li>Represents the unattainable hero of fantasy</li>
+        <li>Symbolises escapism &amp; hero worship</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Father &amp; Family</div>
+      <ul class="node-points">
+        <li>Working-class family — cramped home</li>
+        <li>Father watches football — disappointed at Casey's performance</li>
+        <li>Does not understand Sophie's dreams</li>
+        <li>Family represents the reality Sophie wants to escape from</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Adolescent fantasies &amp; hero worship</li>
+        <li>Escapism from harsh socioeconomic realities</li>
+        <li>Gap between dreams &amp; real life</li>
+        <li>Loneliness &amp; longing for a different life</li>
+        <li>Transition from childhood to adult responsibility</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ==================== FLAMINGO POETRY ==================== -->
+
+<!-- P1: MY MOTHER AT SIXTY-SIX -->
+<div id="mm-p1" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">My Mother at Sixty-Six</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Kamala Das</span>
+    <span class="mm-badge badge-poetry">Flamingo · Poetry 1</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">My Mother at Sixty-Six</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Setting</div>
+      <ul class="node-points">
+        <li>Poet driving to Cochin airport</li>
+        <li>Mother sitting in the back seat</li>
+        <li>Poem set on a single drive</li>
+        <li>Ends at the airport — parting moment</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The Mother — Observation</div>
+      <ul class="node-points">
+        <li>Dozing with mouth open — ashen, pale</li>
+        <li>Face like "late winter's moon" — dull, colourless</li>
+        <li>Corpse-like appearance — shocks the poet</li>
+        <li>Old, frail, nearing the end of life</li>
+        <li>Represents aging, decay &amp; approaching death</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Contrast (Inside vs Outside)</div>
+      <ul class="node-points">
+        <li>Inside car: pale, sleeping, death-like mother</li>
+        <li>Outside: sprinting trees — full of life &amp; vigour</li>
+        <li>Outside: merry children — energy of youth</li>
+        <li>Sharp contrast between decay and life</li>
+        <li>Nature's life vs human aging</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Poet's Emotions</div>
+      <ul class="node-points">
+        <li>Familiar ache — childhood fear of losing mother</li>
+        <li>Tried to distract herself by looking outside</li>
+        <li>Smiles &amp; says "See you soon, Amma"</li>
+        <li>Hides her sorrow &amp; pain behind a smile</li>
+        <li>Fear that this may be their last meeting</li>
+        <li>Pain of separation mingled with love</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Aging and mortality</li>
+        <li>Love and attachment between mother and child</li>
+        <li>Pain of separation</li>
+        <li>Fear of loss — universal human emotion</li>
+        <li>The inevitability of death</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Literary Devices</div>
+      <ul class="node-points">
+        <li>Simile: face like "late winter's moon" (pale, wan)</li>
+        <li>Simile: "corpse-like" — stark &amp; jarring</li>
+        <li>Imagery: sprinting trees, young children</li>
+        <li>No full stop in poem — unending ache (stream of consciousness)</li>
+        <li>Repetition of familiar ache (childhood fear returns)</li>
+        <li>Transferred epithet: "merry children"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- P2: KEEPING QUIET -->
+<div id="mm-p2" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Keeping Quiet</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Pablo Neruda</span>
+    <span class="mm-badge badge-poetry">Flamingo · Poetry 2</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Keeping Quiet</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Central Appeal</div>
+      <ul class="node-points">
+        <li>Count to twelve and keep still</li>
+        <li>A universal moment of collective silence</li>
+        <li>No movement of arms — no language</li>
+        <li>Poet will also keep quiet — not separate</li>
+        <li>Silence for one second = extraordinary stillness</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">What Silence Would Achieve</div>
+      <ul class="node-points">
+        <li>Wars with gas &amp; fire would stop</li>
+        <li>No man rushing to hurt his own hands</li>
+        <li>Fishermen would not harm the cold sea</li>
+        <li>Salt gatherer would look at his hurt hands and rest</li>
+        <li>Those preparing to kill would realise &amp; pause</li>
+        <li>Brother — green wars &amp; wars with gas &amp; fire — all would pause</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Earth's Lesson</div>
+      <ul class="node-points">
+        <li>Earth teaches us — seems dead in winter</li>
+        <li>But produces life again in spring</li>
+        <li>Stillness ≠ total inactivity</li>
+        <li>Nature shows that apparent death leads to renewal</li>
+        <li>Poet says: "I want no truck with death"</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">What Neruda Does NOT Mean</div>
+      <ul class="node-points">
+        <li>NOT asking for total inactivity / idleness</li>
+        <li>NOT about threatening oneself with death</li>
+        <li>NOT permanent silence — just one moment</li>
+        <li>Life and progress must continue after silence</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Anti-war sentiment — peace &amp; stillness</li>
+        <li>Oneness of all humanity</li>
+        <li>Introspection &amp; self-reflection through silence</li>
+        <li>Environmental consciousness</li>
+        <li>Paradox: doing nothing = achieving much</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Literary Devices</div>
+      <ul class="node-points">
+        <li>Paradox: "exotic moment" in stillness</li>
+        <li>Symbolism: counting to 12 (clock — all time zones)</li>
+        <li>Personification: Earth teaches mankind</li>
+        <li>Imagery: fisherman, salt gatherer, wars</li>
+        <li>Repetition: "now we will count"</li>
+        <li>Free verse — no rhyme or fixed metre</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- P3: A THING OF BEAUTY -->
+<div id="mm-p3" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">A Thing of Beauty</div>
+  <div class="mm-meta">
+    <span class="mm-author">— John Keats</span>
+    <span class="mm-badge badge-poetry">Flamingo · Poetry 3</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">A Thing of Beauty</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Opening Idea</div>
+      <ul class="node-points">
+        <li>"A thing of beauty is a joy forever"</li>
+        <li>Beauty never passes into nothingness</li>
+        <li>Leaves a bower of bliss for us always</li>
+        <li>A quiet shelter — a sleep full of dreams &amp; health</li>
+        <li>An endless fountain of immortal drink</li>
+        <li>Poured on us from heaven</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Sources of Beauty (Natural)</div>
+      <ul class="node-points">
+        <li>Sun, moon &amp; old trees providing shelter</li>
+        <li>Simple sheep grazing on the hillside</li>
+        <li>Daffodils — green world they live in</li>
+        <li>Clear streams / rills with cool sides</li>
+        <li>Thickets of fern — musk-rose blooms</li>
+        <li>Forest brake — grandeur of dooms we have imagined</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Sources of Beauty (Human &amp; Mythical)</div>
+      <ul class="node-points">
+        <li>Mighty dead — heroes celebrated by great poets</li>
+        <li>Their tales are a source of joy on earth</li>
+        <li>Grandeur of dooms — noble stories of sacrifice</li>
+        <li>Beauty counters human despondency &amp; evil</li>
+        <li>Beauty redeems mankind from sorrow &amp; suffering</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Why Beauty is Needed</div>
+      <ul class="node-points">
+        <li>We live amid gloomy days &amp; unhealthy ways</li>
+        <li>Lack of noble natures — depression &amp; despair</li>
+        <li>Beauty removes the pall from human spirit</li>
+        <li>Acts as a shelter — "bower of bliss"</li>
+        <li>Necessary to counterbalance sorrow of existence</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Immortality of true beauty</li>
+        <li>Nature as the greatest source of beauty</li>
+        <li>Beauty as a healer of human suffering</li>
+        <li>Romanticism — Keats's core belief</li>
+        <li>"Beauty is truth, truth beauty" — Keats's philosophy</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Literary Devices</div>
+      <ul class="node-points">
+        <li>Metaphor: beauty = "endless fountain of immortal drink"</li>
+        <li>Imagery: "bower of bliss", "clear rills", "musk-rose blooms"</li>
+        <li>Alliteration: "simple sheep", "sprouting shady boon"</li>
+        <li>Personification: Beauty as a living, giving entity</li>
+        <li>Excerpt from "Endymion" — Romantic Ode</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- P4: A ROADSIDE STAND -->
+<div id="mm-p4" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">A Roadside Stand</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Robert Frost</span>
+    <span class="mm-badge badge-poetry">Flamingo · Poetry 4</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">A Roadside Stand</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">The Roadside Stand</div>
+      <ul class="node-points">
+        <li>Poor rural farmers set up a roadside stand</li>
+        <li>Sell berries, crook-necked squash, other produce</li>
+        <li>Freshly painted signs — seeking city money</li>
+        <li>Arrows point in wrong directions — painted on wrong side</li>
+        <li>Cars rarely stop — farmers wait in vain</li>
+        <li>Their plea: just one car to stop and buy something</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The City People</div>
+      <ul class="node-points">
+        <li>Rush past in cars — barely notice the stand</li>
+        <li>Some stop to ask irrelevant directions</li>
+        <li>Some complain the stand "blots the landscape"</li>
+        <li>Demand unspoilt wildness while ignoring the poor</li>
+        <li>Their indifference is the poet's central complaint</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Rural Poor</div>
+      <ul class="node-points">
+        <li>Cry of the poor — they want to share city's wealth</li>
+        <li>Dream of movies, news, goodness of life in cities</li>
+        <li>Their sorrow &amp; waiting — "pitiful kin" of the city</li>
+        <li>Their lives are small, overlooked, &amp; forgotten</li>
+        <li>Poet cannot sleep thinking of their pain</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">The Politic Ones (Patrons)</div>
+      <ul class="node-points">
+        <li>"Benefactors" who plan to help the poor</li>
+        <li>Plan to move them to communal living (government houses)</li>
+        <li>Promise movies &amp; benefits — strip away freedom</li>
+        <li>The poor will lose their natural way of life</li>
+        <li>Saved from pain — but taught to sleep (numbed)</li>
+        <li>Irony: "helpers" do more harm than good</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Rural vs urban divide &amp; inequality</li>
+        <li>Indifference of the privileged</li>
+        <li>Irony of development that disempowers the poor</li>
+        <li>Economic disparity in modern society</li>
+        <li>Helplessness of the poet — cannot fix it</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Literary Devices</div>
+      <ul class="node-points">
+        <li>Irony: "politic ones" who claim to help</li>
+        <li>Imagery: roadside stand, cars speeding past</li>
+        <li>Tone: sympathetic, frustrated, helpless</li>
+        <li>Rhyme scheme: loosely rhyming couplets</li>
+        <li>Contrast: city wealth vs rural poverty</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- P5: AUNT JENNIFER'S TIGERS -->
+<div id="mm-p5" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Aunt Jennifer's Tigers</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Adrienne Rich</span>
+    <span class="mm-badge badge-poetry">Flamingo · Poetry 5</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Aunt Jennifer's Tigers</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">The Tigers (Panel)</div>
+      <ul class="node-points">
+        <li>Prancing across a panel of bright green screen</li>
+        <li>"Bright topaz denizens of a world of green"</li>
+        <li>Proud, fearless &amp; confident</li>
+        <li>Chivalric certainty — not afraid of men beneath the tree</li>
+        <li>They pace — majestic &amp; free</li>
+        <li>Symbolise freedom, strength &amp; fearlessness</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Aunt Jennifer</div>
+      <ul class="node-points">
+        <li>Fingers flutter through the wool — she finds the needle hard to pull</li>
+        <li>The ivory needle is heavy — symbolic of marriage's burden</li>
+        <li>Terrified &amp; dominated by her husband</li>
+        <li>Weighed down by the ordeals of marriage</li>
+        <li>Creates tigers — her only expression of freedom</li>
+        <li>She embodies the suppressed woman</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Uncle's Ring</div>
+      <ul class="node-points">
+        <li>"Massive weight of Uncle's wedding band"</li>
+        <li>Sits heavily upon Aunt Jennifer's hand</li>
+        <li>Symbol of patriarchal control &amp; bondage</li>
+        <li>Even embroidering, she cannot escape the ring</li>
+        <li>Marriage itself is the trap</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">After Aunt Jennifer's Death</div>
+      <ul class="node-points">
+        <li>"When Aunt is dead, her terrified hands will lie"</li>
+        <li>"Still ringed with ordeals she was mastered by"</li>
+        <li>Oppression follows her even in death</li>
+        <li>But her tigers — they go on prancing, proud and unafraid</li>
+        <li>Art outlives the oppressed artist</li>
+        <li>The tigers achieve what Jennifer never could</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Patriarchal oppression of women</li>
+        <li>Art as a form of escape from suffering</li>
+        <li>Suppression of women's identity in marriage</li>
+        <li>Immortality of creative expression</li>
+        <li>Contrast: free tigers vs caged Aunt Jennifer</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Literary Devices</div>
+      <ul class="node-points">
+        <li>Symbolism: tigers = free spirit; ring = patriarchal bondage</li>
+        <li>Contrast: tigers (free) vs Aunt Jennifer (trapped)</li>
+        <li>Imagery: "bright topaz denizens", "fingers flutter"</li>
+        <li>Irony: creates free tigers but lives in captivity</li>
+        <li>Rhyme scheme: AABB (heroic couplets — traditional = patriarchy)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ==================== VISTAS ==================== -->
+
+<!-- V1: THE THIRD LEVEL -->
+<div id="mm-v1" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Third Level</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Jack Finney</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 1</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">The Third Level</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Charley</div>
+      <ul class="node-points">
+        <li>31-year-old New Yorker</li>
+        <li>Passionate stamp collector (philatelist)</li>
+        <li>Married to Louisa</li>
+        <li>Wants to escape the stress of modern life</li>
+        <li>Finds the Third Level at Grand Central</li>
+        <li>Tries to buy tickets to Galesburg — fails (old currency)</li>
+        <li>Represents modern man's longing for a simpler past</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Sam (Psychiatrist Friend)</div>
+      <ul class="node-points">
+        <li>Charley's friend &amp; psychiatrist</li>
+        <li>Initially dismissed the Third Level as "waking dream/fantasy"</li>
+        <li>Said it is a "temporary refuge from reality"</li>
+        <li>But he himself found the Third Level</li>
+        <li>Settled in Galesburg, 1894 — wrote a letter to Charley</li>
+        <li>Letter found in Charley's grandfather's first-day covers</li>
+        <li>Ironic reversal — the analyst gets "lost" in the fantasy</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Third Level</div>
+      <ul class="node-points">
+        <li>Grand Central Station actually has 2 levels</li>
+        <li>Charley finds a mysterious third level</li>
+        <li>Smaller, old-fashioned — gas lamps, wooden booths</li>
+        <li>Men in beaver hats, women in long skirts — 1890s style</li>
+        <li>Old newspaper dated June 11, 1894 — confirmed the time</li>
+        <li>Tickets available to Galesburg, Illinois</li>
+        <li>Charley tried to buy tickets — clerk didn't accept modern bills</li>
+        <li>Never found the third level again despite searching</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Galesburg, Illinois — 1894</div>
+      <ul class="node-points">
+        <li>Peaceful &amp; idyllic small town</li>
+        <li>Huge, shady trees; big, comfortable homes</li>
+        <li>Spacious lawns — slow pace of life</li>
+        <li>Long summer evenings — bands playing</li>
+        <li>A simpler, happier era (as Charley imagines it)</li>
+        <li>Sam ultimately settles here</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Escape from reality &amp; modern stress</li>
+        <li>Longing for the past — nostalgia</li>
+        <li>Reality vs fantasy (or hallucination?)</li>
+        <li>Modern life's insecurity &amp; tension</li>
+        <li>The human need for a safe, peaceful haven</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Key Literary Points</div>
+      <ul class="node-points">
+        <li>Genre: sci-fi / fantasy with psychological depth</li>
+        <li>Irony: Sam (the psychiatrist) escapes to fantasy</li>
+        <li>Stamp collecting = escape into past (hobby = metaphor)</li>
+        <li>Louisa — Charley's wife, worried about him</li>
+        <li>Open ending — did the Third Level really exist?</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- V2: THE TIGER KING -->
+<div id="mm-v2" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Tiger King</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Kalki (R. Krishnamurthy)</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 2</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">The Tiger King</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">The Tiger King (Jung Bahadur)</div>
+      <ul class="node-points">
+        <li>Crown Prince of Pratibandapuram</li>
+        <li>Born under the star of the Bull — foretold death by tiger</li>
+        <li>As infant: spoke &amp; asked the astrologer about death</li>
+        <li>Grew up obsessed with killing tigers to defy prophecy</li>
+        <li>Killed 70 tigers — but ran out of tigers in his kingdom</li>
+        <li>Married princess of a state with tigers (hunted 30 more)</li>
+        <li>100th tiger: very old, half-dead — missed shot; killed by hunters</li>
+        <li>Actually killed by a wooden tiger — prophecy fulfilled ironically</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The Prophecy</div>
+      <ul class="node-points">
+        <li>Given by royal astrologer at the infant's birth</li>
+        <li>"O son, this is a man who will one day have to die"</li>
+        <li>Death will come from a TIGER</li>
+        <li>Tiger King arrogantly declares: "Let tigers beware"</li>
+        <li>He kills 99 tigers — thinks he has won</li>
+        <li>Ultimately killed by a wooden toy tiger — ironic fulfilment</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Pratibandapuram</div>
+      <ul class="node-points">
+        <li>A fictional state in British India</li>
+        <li>Burdened by the Tiger King's whimsical decisions</li>
+        <li>State faced a British officer's demand — King refused</li>
+        <li>Gave 50 diamond rings to the officer's wife — saved kingdom</li>
+        <li>Banned tiger hunting by others in the state</li>
+        <li>People suffered for the King's obsession</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Irony in the Story</div>
+      <ul class="node-points">
+        <li>King kills 99 real tigers — but dies from a tiny wooden one</li>
+        <li>The wooden toy tiger's splinter caused a wound that festered</li>
+        <li>Three surgeons operated — but King died</li>
+        <li>Dramatic irony: reader knows prophecy; King does not accept it</li>
+        <li>The "safest" tiger (wooden toy) was the fatal one</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Satire Targets</div>
+      <ul class="node-points">
+        <li>Indian maharajas — arrogant, absurd decisions</li>
+        <li>People in power who put ego above common sense</li>
+        <li>The Diwan — sycophantic, enables the King's folly</li>
+        <li>Jilani (British officer) — bribed with diamond rings</li>
+        <li>Superstition vs rational thought</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Fate is inescapable — man cannot defy destiny</li>
+        <li>Arrogance &amp; abuse of power</li>
+        <li>Satire on colonial-era royalty</li>
+        <li>Environmental damage for personal ego</li>
+        <li>Futility of defying the inevitable</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- V3: JOURNEY TO THE END OF THE EARTH -->
+<div id="mm-v3" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">Journey to the End of the Earth</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Tishani Doshi</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 3</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Journey to the End of the Earth</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">The Author's Journey</div>
+      <ul class="node-points">
+        <li>Tishani Doshi — poet, dancer &amp; writer</li>
+        <li>Part of "Students on Ice" programme</li>
+        <li>Travelled 13.09 degrees from the equator southward</li>
+        <li>9 days on ship MV Akademik Shokalskiy</li>
+        <li>Crossed the Drake Passage — treacherous seas</li>
+        <li>Reached Antarctica — the White Continent</li>
+        <li>First time she had been in a place with no human habitation</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Antarctica — The Continent</div>
+      <ul class="node-points">
+        <li>One-tenth of Earth's surface — 14 million sq km</li>
+        <li>Oldest, driest, windiest, coldest continent</li>
+        <li>Holds 70% of Earth's fresh water (as ice)</li>
+        <li>No trees, birds, animals, no human settlements</li>
+        <li>The last great wilderness — 650 million years old</li>
+        <li>Once part of Gondwana (supercontinent)</li>
+        <li>Ozone hole forms over Antarctica each spring</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Geological &amp; Ecological Significance</div>
+      <ul class="node-points">
+        <li>Antarctica was once part of Gondwana — warm tropical forests</li>
+        <li>Dinosaurs &amp; ancient creatures roamed here</li>
+        <li>Phytoplankton — base of entire marine food chain</li>
+        <li>Phytoplankton produces oxygen &amp; sequesters carbon</li>
+        <li>Sensitive to UV radiation &amp; temperature changes</li>
+        <li>Antarctica's ice sheets record Earth's climate history</li>
+        <li>Ice cores = 650,000 years of climate data</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Students on Ice Programme</div>
+      <ul class="node-points">
+        <li>Founded by Geoff Green — for high school students</li>
+        <li>Brings students to poles for hands-on experience</li>
+        <li>Future policymakers need to experience the planet</li>
+        <li>Instils responsibility &amp; environmental awareness</li>
+        <li>Meaningful and lasting education — not from textbooks</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Climate Change Concerns</div>
+      <ul class="node-points">
+        <li>Antarctica shows effects of human-caused warming</li>
+        <li>Ice sheets melting → sea levels rising globally</li>
+        <li>Ozone depletion → harmful UV radiation</li>
+        <li>Loss of phytoplankton → collapse of food chain</li>
+        <li>The continent is like a "canary in the coal mine"</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Importance of environmental awareness</li>
+        <li>Human impact on the planet &amp; climate change</li>
+        <li>Antarctica as Earth's memory &amp; early warning system</li>
+        <li>Education through experience</li>
+        <li>Humility: humans are temporary, Earth is ancient</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- V4: THE ENEMY -->
+<div id="mm-v4" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Enemy</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Pearl S. Buck</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 4</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">The Enemy</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Dr. Sadao Hoki</div>
+      <ul class="node-points">
+        <li>Japanese doctor &amp; scientist — trained in USA</li>
+        <li>Meets Hana (wife) in America — also Japanese</li>
+        <li>Returns to Japan — lives in a house by the sea</li>
+        <li>Doctor to the Japanese General</li>
+        <li>Finds wounded American POW (Tom) on beach</li>
+        <li>Inner conflict: patriotism vs medical ethics</li>
+        <li>Ultimately saves Tom — operates, nurses, helps escape</li>
+        <li>Torn between humanity and nationalism</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Hana (Sadao's Wife)</div>
+      <ul class="node-points">
+        <li>Met Sadao while both studying in USA</li>
+        <li>Initially reluctant — "What if he is our enemy?"</li>
+        <li>But helps Sadao nurse Tom despite fear</li>
+        <li>Dismissed the servants who threatened to report them</li>
+        <li>Washed Tom herself — no servant would</li>
+        <li>Represents loyalty and quiet courage</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Tom (The Prisoner of War)</div>
+      <ul class="node-points">
+        <li>Young American soldier — washed ashore wounded</li>
+        <li>Gunshot wound — bleeding badly</li>
+        <li>Weak, delirious when found</li>
+        <li>Operated on by Sadao — saved against all odds</li>
+        <li>Gradually recovers — stays hidden in Sadao's house</li>
+        <li>Helped to escape on a small boat to Korea</li>
+        <li>Given flashlight to signal a Korean boat for help</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">The General</div>
+      <ul class="node-points">
+        <li>High-ranking Japanese General — Sadao's patient</li>
+        <li>Has a condition only Sadao can operate on</li>
+        <li>Sadao tells him about Tom — selfishly keeps Sadao safe</li>
+        <li>Promises to send assassins to kill Tom quietly</li>
+        <li>Assassins never come — General forgets (preoccupied)</li>
+        <li>His self-interest inadvertently saves Tom</li>
+        <li>Represents power without moral responsibility</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">The Servants</div>
+      <ul class="node-points">
+        <li>Yumi (nurse): refused to wash a white man</li>
+        <li>Old gardener &amp; cook: disapproved strongly</li>
+        <li>All servants left — whispered about Sadao's action</li>
+        <li>Represent social pressure &amp; wartime nationalism</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Humanity triumphs over nationalism</li>
+        <li>Conflict between duty, patriotism &amp; conscience</li>
+        <li>War creates "enemies" out of ordinary people</li>
+        <li>Medical ethics — a doctor must heal, not judge</li>
+        <li>Self-interest can accidentally do good (the General)</li>
+        <li>Courage of moral conviction</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- V5: ON THE FACE OF IT -->
+<div id="mm-v5" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">On the Face of It</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Susan Hill</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 5</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">On the Face of It</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Derry</div>
+      <ul class="node-points">
+        <li>14-year-old boy — one side of face burnt by acid</li>
+        <li>Bitter, withdrawn, feels ugly &amp; unloved</li>
+        <li>People stare, whisper &amp; avoid him</li>
+        <li>A woman said: "It's the ugliest thing I've ever seen"</li>
+        <li>His own mother kisses him only on the "good" side</li>
+        <li>Gradually opens up to Mr. Lamb's kindness</li>
+        <li>Decides to return to Mr. Lamb despite mother's protests</li>
+        <li>Arrives back — finds Mr. Lamb has fallen &amp; died</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">Mr. Lamb</div>
+      <ul class="node-points">
+        <li>Old man — lost a leg in the war (has a tin leg)</li>
+        <li>Lives alone — all windows &amp; gates open; everyone welcome</li>
+        <li>Loves his garden — grows weeds AND flowers equally</li>
+        <li>Makes crab apple jelly; has beehives</li>
+        <li>Reads books with a magnifying glass</li>
+        <li>Philosophical &amp; optimistic about life &amp; disability</li>
+        <li>Children call him "Lamey Lamb" — he doesn't mind</li>
+        <li>Falls from a ladder while picking crab apples — dies</li>
+        <li>Represents acceptance, resilience &amp; inclusion</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Mr. Lamb's Philosophy</div>
+      <ul class="node-points">
+        <li>"Weeds are plants too — they have their place"</li>
+        <li>You can sit in a room and have no world at all</li>
+        <li>"I see things. Take an interest in what's out there"</li>
+        <li>Fly caught in a web: is it eaten or saved by the web?</li>
+        <li>Encourages Derry to look outward, not inward</li>
+        <li>Beauty is in the beholder — disability is not ugliness</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Society's Treatment</div>
+      <ul class="node-points">
+        <li>People pity or mock those who are "different"</li>
+        <li>Derry's face makes him a social outcast</li>
+        <li>Even family is uncomfortable — treat him differently</li>
+        <li>World judges people on appearances</li>
+        <li>Mr. Lamb is lonely too — nobody visits him</li>
+        <li>Both are isolated — united by their "difference"</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Disability &amp; acceptance of self</li>
+        <li>Loneliness &amp; the power of human connection</li>
+        <li>Appearance vs inner worth</li>
+        <li>Healing through compassion &amp; companionship</li>
+        <li>Everyone is "disabled" in some way</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Genre &amp; Structure</div>
+      <ul class="node-points">
+        <li>A play (drama) — two characters, one setting (garden)</li>
+        <li>Minimalist setting — the garden symbolises openness</li>
+        <li>Dialogue-driven — character reveals through speech</li>
+        <li>Tragic ending: Mr. Lamb dies just as Derry finds hope</li>
+        <li>Symbolic: even in death, Mr. Lamb leaves an impact</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- V6A: CUTTING OF MY LONG HAIR -->
+<div id="mm-v6a" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">The Cutting of My Long Hair</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Zitkala-Sa</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 6A</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Memories of Childhood — 6A</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Zitkala-Sa (Author)</div>
+      <ul class="node-points">
+        <li>Native American — Sioux (Yankton Dakota) woman</li>
+        <li>Taken to Carlisle Indian Industrial School</li>
+        <li>Real name: Gertrude Simmons Bonnin</li>
+        <li>One of the first Native American women to publish literary work</li>
+        <li>Fought for Native American rights throughout life</li>
+        <li>Wrote "American Indian Stories" — basis of this text</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The Significance of Hair</div>
+      <ul class="node-points">
+        <li>Among Sioux, short hair = cowardly or in mourning</li>
+        <li>Shingled (cut short) hair = sign of capture or defeat</li>
+        <li>Long hair = pride, identity &amp; cultural dignity</li>
+        <li>Cutting hair = stripping away Native American identity</li>
+        <li>Her mother had warned her about this at the school</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">The Act of Resistance</div>
+      <ul class="node-points">
+        <li>Heard other girls' hair being cut — panicked</li>
+        <li>Ran away and hid under a bed in a dark room</li>
+        <li>Found, dragged out despite kicking &amp; struggling</li>
+        <li>Tied to a chair — hair cut forcibly</li>
+        <li>Could not save herself — felt humiliated and defeated</li>
+        <li>Cried all day — deeply traumatic experience</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Carlisle Indian School</div>
+      <ul class="node-points">
+        <li>Run by US government — assimilation school</li>
+        <li>Motto: "Kill the Indian, save the man"</li>
+        <li>Children forced to give up language, clothes &amp; customs</li>
+        <li>Forbidden to speak native languages</li>
+        <li>Western dress, haircuts &amp; Christian values imposed</li>
+        <li>Designed to erase indigenous identity entirely</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Cultural erasure &amp; colonial oppression</li>
+        <li>Loss of identity &amp; dignity</li>
+        <li>Resistance against assimilation</li>
+        <li>Importance of cultural roots &amp; self-respect</li>
+        <li>The trauma inflicted by colonial "education"</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Connection to Theme: Marginalization</div>
+      <ul class="node-points">
+        <li>Parallel with Bama's story (6B) — both face systemic oppression</li>
+        <li>Both are from minority/marginalized communities</li>
+        <li>Both experience humiliation due to identity</li>
+        <li>Both ultimately resist &amp; find their voice through writing</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- V6B: WE TOO ARE HUMAN BEINGS -->
+<div id="mm-v6b" class="mindmap" style="display:none">
+<div class="mm-card">
+<div class="mm-header">
+  <div class="mm-title">We Too Are Human Beings</div>
+  <div class="mm-meta">
+    <span class="mm-author">— Bama</span>
+    <span class="mm-badge badge-vistas">Vistas · Chapter 6B</span>
+  </div>
+</div>
+<div class="mm-body">
+  <div class="center-row"><div class="center-node">Memories of Childhood — 6B</div></div>
+  <div class="mm-grid mm-grid-3">
+    <div class="node node-blue">
+      <div class="node-title">Bama (Author)</div>
+      <ul class="node-points">
+        <li>Tamil Dalit woman writer &amp; activist</li>
+        <li>Grew up in a small village in Tamil Nadu</li>
+        <li>Observed caste discrimination firsthand as a child</li>
+        <li>Her real name: Famila — "Bama" is a pen name</li>
+        <li>Author of "Karukku" (1992) — autobiography</li>
+        <li>Overcame discrimination through education</li>
+        <li>Became a teacher &amp; writer — voice for Dalits</li>
+      </ul>
+    </div>
+    <div class="node node-green">
+      <div class="node-title">The Incident</div>
+      <ul class="node-points">
+        <li>Bama was walking home from school as a child</li>
+        <li>Saw a landlord (upper caste) being given food</li>
+        <li>An elder from her community carried the bag by its strings</li>
+        <li>Did not touch the bag itself — to avoid "polluting" it</li>
+        <li>Bama found this funny at first — wanted to carry it normally</li>
+        <li>Annan (brother) explained: it was because of their caste</li>
+        <li>Bama felt anger, humiliation &amp; deep hurt</li>
+      </ul>
+    </div>
+    <div class="node node-amber">
+      <div class="node-title">Annan's Advice</div>
+      <ul class="node-points">
+        <li>Annan = Bama's older brother — studied, educated</li>
+        <li>Explained the reality of caste to the young Bama</li>
+        <li>"Because of our caste, we are treated worse than animals"</li>
+        <li>Advised: "Study hard — education brings respect"</li>
+        <li>"If you have learning, people will come to you"</li>
+        <li>Became her motivation to fight discrimination through education</li>
+      </ul>
+    </div>
+    <div class="node node-rose">
+      <div class="node-title">Caste Discrimination — Reality</div>
+      <ul class="node-points">
+        <li>Dalits treated as untouchables — not allowed to touch upper-caste food</li>
+        <li>Their presence considered polluting</li>
+        <li>Had to walk a long distance around the street to avoid contact</li>
+        <li>Upper caste landlords exploit Dalit labour</li>
+        <li>Society normalised this humiliation for centuries</li>
+      </ul>
+    </div>
+    <div class="node node-purple">
+      <div class="node-title">Themes</div>
+      <ul class="node-points">
+        <li>Caste discrimination &amp; untouchability</li>
+        <li>Dignity &amp; self-respect for all humans</li>
+        <li>Education as the path to liberation</li>
+        <li>Childhood innocence shattered by social reality</li>
+        <li>"We too are human beings" — the title itself is a protest</li>
+      </ul>
+    </div>
+    <div class="node node-teal">
+      <div class="node-title">Comparison with 6A (Zitkala-Sa)</div>
+      <ul class="node-points">
+        <li>Both are memoirs / autobiographical accounts</li>
+        <li>Both face oppression based on their identity</li>
+        <li>Zitkala-Sa: racial &amp; cultural oppression</li>
+        <li>Bama: caste oppression</li>
+        <li>Both resist through writing &amp; self-expression</li>
+        <li>Both inspire marginalized communities to find their voice</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div><!-- end mm-wrapper -->
+
+<script>
+let currentBook = 'flamingo';
+let currentVisible = 'mm-f1';
+
+function setBook(book, btn) {
+  currentBook = book;
+  document.querySelectorAll('.book-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('flamingo-nav').style.display = book === 'flamingo' ? '' : 'none';
+  document.getElementById('vistas-nav').style.display = book === 'vistas' ? '' : 'none';
+  // Show first chapter
+  const firstId = book === 'flamingo' ? 'mm-f1' : 'mm-v1';
+  // reset all chapter btn states
+  document.querySelectorAll('.ch-btn').forEach(b => b.classList.remove('active'));
+  // activate first button in visible nav
+  const nav = document.getElementById(book + '-nav');
+  const firstBtn = nav.querySelector('.ch-btn');
+  if(firstBtn) firstBtn.classList.add('active');
+  showMM(firstId);
+}
+
+function show(id, btn) {
+  // deactivate all buttons in SAME section
+  const btnSection = btn.closest('.chapter-nav');
+  btnSection.querySelectorAll('.ch-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showMM(id);
+}
+
+function showMM(id) {
+  document.querySelectorAll('.mindmap').forEach(m => m.style.display = 'none');
+  const el = document.getElementById(id);
+  if(el) { el.style.display = ''; el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  currentVisible = id;
+}
+
+// Init: show first flamingo chapter
+document.querySelector('#flamingo-nav .ch-btn').classList.add('active');
+</script>
+</body>
+</html>
